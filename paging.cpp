@@ -5,7 +5,7 @@ using namespace std;
 
  void calculatePhysicalAddress(int vm,int pgsize,int va)
  {
-  int memPower=0,noOfPages=0,page=0;
+  int memPower=0,noOfPages=0,page=0,physicalAddress=206;
   int pageTable[4][2] = {{0,2},
                        {1,6},
                        {2,10},
@@ -13,7 +13,7 @@ using namespace std;
   //size of virtual memory
   while(vm)
   {
-      vm/=2;
+      vm/=2; 
       memPower++;
   }
   
@@ -28,9 +28,10 @@ using namespace std;
   }
   //frame
   int frameNo = pageTable[page][1]; // 2.this part is p
-  
+  int frameadd = frameNo * pgsize;
+
   //actual physical address?
-  int physicalAddress = page*pgsize + va;
+  physicalAddress += frameadd + va;
 
   //Display Output
   cout<<"----------------------------------------"<<endl
